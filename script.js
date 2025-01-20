@@ -1,7 +1,7 @@
 const canvas = document.getElementById("canvas-game");
 const ctx = canvas.getContext("2d")
 
-const cellSize = 20;
+const cellSize = 10;
 
 function createGrid(rows, cols) {
     let grid = []
@@ -39,7 +39,7 @@ function gridState(grid) {
         for (let j = 0; j < grid[i].length; j++) {
             if (grid[i][j]) {
                 if (i < grid.length - 1) {
-                    if(grid[i + 1][j] == 1) {
+                    if( grid[i + 1][j] ) {
                         newGrid[i][j] = 1
                     }
                     else {
@@ -57,12 +57,23 @@ function gridState(grid) {
 }
 
 
-let grid = createGrid(20, 10)
-grid[0][0] = 1
-grid[1][1] = 1
-grid[2][2] = 1
-grid[3][3] = 1
-grid[1][0] = 1
+const rows = 30
+const cols = 20
+
+let grid = createGrid(rows, cols)
+
+canvas.addEventListener('mousehover', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width; 
+    const scaleY = canvas.height / rect.height;
+
+    const x = Math.floor((event.clientX - rect.left) * scaleX / cellSize);
+    const y = Math.floor((event.clientY - rect.top) * scaleY / cellSize);
+    if (x <= cols && y <= rows ) {
+        grid[y][x] = 1;
+    }
+});
+
 console.table(grid)
 setInterval(() => {
     drawGrid(grid)

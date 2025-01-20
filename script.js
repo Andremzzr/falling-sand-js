@@ -62,7 +62,7 @@ const cols = 20
 
 let grid = createGrid(rows, cols)
 
-canvas.addEventListener('mousehover', (event) => {
+canvas.addEventListener('mousemove', (event) => {
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width; 
     const scaleY = canvas.height / rect.height;
@@ -78,4 +78,4 @@ console.table(grid)
 setInterval(() => {
     drawGrid(grid)
     grid = gridState(grid)
-}, 50)
+}, 60)

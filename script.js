@@ -145,7 +145,9 @@ canvas.addEventListener('mousemove', (event) => {
     const x = Math.floor((event.clientX - rect.left) * scaleX / cellSize);
     const y = Math.floor((event.clientY - rect.top) * scaleY / cellSize);
     if (x <= cols && y <= rows ) {
-        grid[y][x] = currentColor;
+        if (! grid[y][x]) {
+            grid[y][x] = currentColor;
+        }
     }
 });
 

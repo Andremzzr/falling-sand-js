@@ -22,9 +22,9 @@ function drawGrid(grid) {
                 ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize)
             } 
 
-            ctx.strokeStyle = 'gray';
-            ctx.lineWidth = 0.5;
-            ctx.strokeRect(j * cellSize, i * cellSize, cellSize, cellSize);
+            // ctx.strokeStyle = 'gray';
+            // ctx.lineWidth = 0.5;
+            // ctx.strokeRect(j * cellSize, i * cellSize, cellSize, cellSize);
         }
     }
 }
@@ -48,9 +48,9 @@ function gridState(grid) {
                         const rightDiag = grid[i + 1][j + 1]
 
                         // If some of the diagonals doesnt exist, it will slip to
-                        if( !leftDiag) {
+                        if( !leftDiag && j - 1 > 0) {
                             newGrid[i + 1][j - 1] = 1
-                        } else if ( !rightDiag) {
+                        } else if ( !rightDiag && j + 1 < cols) {
                             newGrid[i + 1][j + 1] = 1
                         } else {
                             // If none of the diagonals is free, the sand cell will remain on the current position
